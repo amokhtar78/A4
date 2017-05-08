@@ -7,8 +7,7 @@
 @section('content')
     <div class='game'>
         @foreach($games as $game)
-            <h2>{{ $game->title }}</h2>
-            <h2>{{ $game->published }}</h2>
+            <h3>{{ $game->published.' '.$game->title }}</h3>
         @endforeach
     </div>
 @endsection

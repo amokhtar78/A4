@@ -15,7 +15,7 @@ class GamesTableSeeder extends Seeder {
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'title' => 'Super Mario Bros',
-            'developer_id' => 1,
+            //'developer_id' => 1,
             'published' => 1985,
         ]);
 
@@ -23,7 +23,7 @@ class GamesTableSeeder extends Seeder {
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'title' => 'Sonic the Hedgehog',
-            'developer_id' => 2,
+            //'developer_id' => 2,
             'published' => 1991,
         ]);
         
@@ -31,8 +31,15 @@ class GamesTableSeeder extends Seeder {
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'title' => 'FIFA',
-            'developer_id' => 3,
+            //'developer_id' => 3,
             'published' => 1993,
+        ]);
+          Game::insert([
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'title' => 'The Elder Scrolls',
+            //'developer_id' => 3,
+            'published' => 1994,
         ]);
     }
 

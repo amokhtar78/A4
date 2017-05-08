@@ -7,7 +7,8 @@
         </title>
 
         <meta charset='utf-8'>
-        <link href='/css/app.css' type='text/css' rel='stylesheet'>
+        
+        <link href='/css/games.css' type='text/css' rel='stylesheet'>
 
         @stack('head')
 
@@ -16,18 +17,28 @@
         <div class="container">
             <header>
                 <img
-                    src='/img/gamelogo.jpg'
+                    src='/img/gameranker.png'
                     alt='Game Logo'>
                 <h1>Video Game Ranker</h1>
             </header>
             <nav>
-                @yield('nav')
+                <nav>
+                    <ul>
+                            <li><a href='/'>Home</a></li>
+                            <li><a href='/search'>Search</a></li>
+                            <li><a href='/games/new'>Add a Game</a></li>
+                    </ul>
+                </nav>
             </nav>
             <article>
                 <section>
                     @yield('content')
+                    @if(Session::get('message') != null))
+                    <div class='message'>{{ Session::get('message') }}</div>
+                    @endif
                 </section>
             </article>
+            
             <footer>
                 Amir Mokhtar &copy; {{ date('Y') }}
                 <BR>
