@@ -25,8 +25,9 @@
                 <nav>
                     <ul>
                             <li><a href='/'>Home</a></li>
-                            <li><a href='/search'>Search</a></li>
-                            <li><a href='/games/new'>Add a Game</a></li>
+                            <li><a href='/search'>Search for Games</a></li>
+                            <li><a href='/games/new'>Add a New Game</a></li>
+                            <li><a href='/games/edit'>Edit a Game Info </a></li>
                     </ul>
                 </nav>
             </nav>

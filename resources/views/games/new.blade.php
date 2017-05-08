@@ -30,6 +30,16 @@ New Game
     <label for='published'>* Published Year</label>
     <input type='text' name='published' id='published' value='{{ old('published', 2001) }}'>
     <br>
+    
+    <label for='developer_id'>* Developer:</label>
+        <select id='developer_id' name='developer_id'>
+            <option value='0'>Choose</option>
+            @foreach($developersForDropdown as $developer_id => $developerName)
+                <option value='{{ $developer_id }}'>
+                    {{ $developerName }}
+                </option>
+            @endforeach
+        </select>
 
     <input type='submit' value='Add New Game'>
 </form>

@@ -6,8 +6,12 @@
 
 @section('content')
     <div class='game'>
-        @foreach($games as $game)
-            <h3>{{ $game->published.' '.$game->title }}</h3>
-        @endforeach
+        <ul>
+           @foreach($games as $game)
+            <li>{{ $game->published.' '.$game->title. 
+                        ' by '.$game->developer->dev_name.' of '.$game->developer->dev_country }}
+        @endforeach 
+        </ul>
+        
     </div>
 @endsection

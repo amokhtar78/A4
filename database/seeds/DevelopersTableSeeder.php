@@ -17,7 +17,8 @@ class DevelopersTableSeeder extends Seeder {
             ['Sega', 'Japan'],
             ['Ubisoft', 'France'],
             ['Bethesda Softworks', 'USA'],
-            ['EA', 'USA']
+            ['EA', 'USA'],
+            ['Microsoft', 'USA']
         ];
 
         # Initiate a new timestamp we can use for created_at/updated_at fields
@@ -37,4 +38,5 @@ class DevelopersTableSeeder extends Seeder {
             ]);
         }
     }
+
 }
