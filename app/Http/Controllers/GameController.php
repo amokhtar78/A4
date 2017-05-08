@@ -17,8 +17,10 @@ class GameController extends Controller {
 
     public function createNewGame(Request $request) {
         $developersForDropdown = Developer::developersForDropdown();
+        $genresForCheckboxes = Genre::getGenresForCheckboxes();
         return view('games.new')->with([
-                    'developersForDropdown' => $developersForDropdown
+                    'developersForDropdown' => $developersForDropdown,
+                    'genresForCheckbox' => $genresForCheckboxes,
         ]);
     }
 
@@ -41,6 +43,14 @@ class GameController extends Controller {
         $game->title = $request->title;
         $game->published = $request->published;
         $game->developer_id = $request->developer_id;
+        $game->save();
+        
+        # Now handle genres.
+        # Note how the game has to be created (save) first *before* genres can
+        # be added; this is because the genres need a game_id to associate with
+        # and we don't have a game_id until the game is created.
+        $genres = ($request->genres) ?: [];
+        $game->genres()->sync($genres);
         $game->save();
 
         Session::flash('message', 'The Game ' . $request->title . ' was added.');
