@@ -41,6 +41,16 @@ Edit {{$game->title}} Game
         </option>
         @endforeach
     </select>
+
+    @foreach($genresForCheckbox as $id => $name)
+    <input
+        type='checkbox'
+        value='{{ $id }}'
+        name='genres[]'
+        {{ (in_array($name, $genresForThisGame)) ? 'CHECKED' : '' }}
+        >
+    {{ $name }} <br>
+    @endforeach
     <br><br>
 
     <input type='submit' value='Save Game Changes'>

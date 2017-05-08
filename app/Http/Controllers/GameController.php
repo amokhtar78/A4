@@ -53,10 +53,18 @@ class GameController extends Controller {
      * /games/edit/{id}
      * Show form to edit a game
      */
-    public function edit($id) {
-        $game = Game::find($id);
+    public function edit($id = null) {
+        $game = Game::with('genres')->find($id);
 
         $developersForDropdown = Developer::developersForDropdown();
+
+        $genresForCheckboxes = Genre::getGenresForCheckboxes();
+        # Create a simple array of just the genre names for genres associated with this Game;
+        # will be used in the view to decide which genres should be checked off
+        $genresForThisGame = [];
+        foreach ($game->genres as $genre) {
+            $genresForThisGame[] = $genre->name;
+        }
 
         if (is_null($game)) {
             Session::flash('message', 'The game you requested was not found.');
@@ -66,7 +74,9 @@ class GameController extends Controller {
         return view('games.edit')->with([
                     'id' => $id,
                     'game' => $game,
-                    'developersForDropdown' => $developersForDropdown
+                    'developersForDropdown' => $developersForDropdown,
+                    'genresForCheckbox' => $genresForCheckboxes,
+                    'genresForThisGame' => $genresForThisGame,
         ]);
     }
 
@@ -86,6 +96,21 @@ class GameController extends Controller {
         $game->title = $request->title;
         $game->published = $request->published;
         $game->developer_id = $request->developer_id;
+        $game->save();
+
+        # If there were genres selected...
+        if ($request->genres) {
+            $genres = $request->genres;
+        }
+        # If there were no genres selected (i.e. no genres in the request)
+        # default to an empty array of genres
+        else {
+            $genres = [];
+        }
+
+        # Above if/else could be condensed down to this: $genres = ($request->genres) ?: [];
+        # Sync genres
+        $game->genres()->sync($genres);
         $game->save();
 
         Session::flash('message', 'The Game ' . $request->title . ' was edited.');

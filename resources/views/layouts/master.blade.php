@@ -7,7 +7,7 @@
         </title>
 
         <meta charset='utf-8'>
-        
+
         <link href='/css/games.css' type='text/css' rel='stylesheet'>
 
         @stack('head')
@@ -24,10 +24,9 @@
             <nav>
                 <nav>
                     <ul>
-                            <li><a href='/'>Home</a></li>
-                            <li><a href='/search'>Search for Games</a></li>
-                            <li><a href='/games/new'>Add a New Game</a></li>
-                            <li><a href='/games/edit'>Edit a Game Info </a></li>
+                        <li><a href='/'>Home</a></li>
+                        <li><a href='/games/new'>Add a New Game</a></li>
+
                     </ul>
                 </nav>
             </nav>
@@ -39,7 +38,7 @@
                     @endif
                 </section>
             </article>
-            
+
             <footer>
                 Amir Mokhtar &copy; {{ date('Y') }}
                 <BR>
