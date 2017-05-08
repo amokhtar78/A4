@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Genre;
 
 class GenresTableSeeder extends Seeder {
 
-    use App\Genre;
+    
     /**
      * Run the database seeds.
      *

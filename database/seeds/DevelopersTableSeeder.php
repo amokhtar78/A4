@@ -14,7 +14,8 @@ class DevelopersTableSeeder extends Seeder {
         # Array of developer data to add
         $developers = [
             ['Nintendo', 'Japan'],
-            ['Sega', 'Japan']
+            ['Sega', 'Japan'],
+            ['EA', 'USA']
         ];
 
         # Initiate a new timestamp we can use for created_at/updated_at fields

@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'GameController@index');
+Route::get('/games/{title}', 'GameController@show');

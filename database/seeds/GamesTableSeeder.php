@@ -26,6 +26,14 @@ class GamesTableSeeder extends Seeder {
             'developer_id' => 2,
             'published' => 1991,
         ]);
+        
+        Game::insert([
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'title' => 'FIFA',
+            'developer_id' => 3,
+            'published' => 1993,
+        ]);
     }
 
 }
