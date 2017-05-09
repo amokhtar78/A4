@@ -1,5 +1,8 @@
 {{-- /resources/views/books/edit.blade.php --}}
 @extends('layouts.master')
+@push('head')
+<h2>Edit {{$game->title}} Game</h2>
+@endpush
 
 @section('title')
 Edit {{$game->title}} Game
@@ -14,8 +17,6 @@ Edit {{$game->title}} Game
     @endforeach
 </ul>
 @endif
-
-<h1>Edit {{$game->title}} Game</h1>
 
 <form method='POST' action='/games/edit'>
     {{ csrf_field() }}
@@ -41,6 +42,7 @@ Edit {{$game->title}} Game
         </option>
         @endforeach
     </select>
+    <br>
 
     <label>Genres</label>
     <ul id='genres'>
@@ -50,8 +52,8 @@ Edit {{$game->title}} Game
             value='{{ $id }}'
             name='genres[]'
             {{ (in_array($name, $genresForThisGame)) ? 'CHECKED' : '' }}
-            >
-        {{ $name }} <br>
+            >&nbsp;
+        {{ $name }}
         @endforeach
     </ul>
     <br>

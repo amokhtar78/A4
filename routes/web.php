@@ -21,3 +21,7 @@ Route::post('/games/new', 'GameController@storeNewGame');
 # routes to process the form to edit a new game
 Route::get('/games/edit/{id}', 'GameController@edit');
 Route::post('/games/edit', 'GameController@saveEdits');
+
+#routes to confirm deletion of game
+Route::get('/games/delete/{id}', 'GameController@confirmDeletion');
+Route::post('/games/delete', 'GameController@delete');

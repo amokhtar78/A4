@@ -1,17 +1,37 @@
 @extends('layouts.master')
 
+@push('head')
+<link href='/css/games.css' rel='stylesheet'>
+<h2>The application to rank your favorite games !!</h2>
+@endpush
+
 @section('title')
-    All the Games
+games
 @endsection
 
 @section('content')
-    <div class='game'>
-        <ul>
-           @foreach($games as $game)
-            <li>{{ $game->published.' '.$game->title. 
+<section id='games' class='cf'>
+    @if(count($games) == 0)
+    You don't have any games yet; would you like to <a href='/games/new'>add one</a>?
+    @else
+    @foreach($games as $game)
+
+    <div class='game cf'>
+
+        <h3>{{ $game->published.' '.$game->title.
                         ' by '.$game->developer->dev_name.' of '.$game->developer->dev_country }}
-        @endforeach 
-        </ul>
-        
+
+            <a class='gameAction' href='/games/edit/{{ $game->id }}'><i class='fa fa-pencil'></i></a>
+            <a class='gameAction' href='/games/delete/{{ $game->id }}'><i class='fa fa-trash'></i></a></h3>
+
+
     </div>
+    @endforeach
+    @endif
+
+</section>
+
 @endsection
+
+
+

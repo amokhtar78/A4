@@ -44,12 +44,12 @@ class GameController extends Controller {
         $game->published = $request->published;
         $game->developer_id = $request->developer_id;
         $game->save();
-        
+
         # Now handle genres.
         # Note how the game has to be created (save) first *before* genres can
         # be added; this is because the genres need a game_id to associate with
         # and we don't have a game_id until the game is created.
-        $genres = ($request->genres) ?: [];
+        $genres = ($request->genres) ? : [];
         $game->genres()->sync($genres);
         $game->save();
 
@@ -126,6 +126,38 @@ class GameController extends Controller {
         Session::flash('message', 'The Game ' . $request->title . ' was edited.');
 
         return redirect('/games/edit/' . $request->id);
+    }
+
+    /**
+     * GET
+     * Page to confirm deletion
+     */
+    public function confirmDeletion($id) {
+        # Get the game they're attempting to delete
+        $game = Game::find($id);
+        if (!$game) {
+            Session::flash('message', 'Game not found.');
+            return redirect('/games');
+        }
+        return view('games.delete')->with('game', $game);
+    }
+
+    /**
+     * POST
+     * Actually delete the game
+     */
+    public function delete(Request $request) {
+        # Get the game to be deleted
+        $game = Game::find($request->id);
+        if (!$game) {
+            Session::flash('message', 'Deletion failed; game not found.');
+            return redirect('/games');
+        }
+        $game->genres()->detach();
+        $game->delete();
+        # Finish
+        Session::flash('message', $game->title . ' was deleted.');
+        return redirect('/games');
     }
 
 }

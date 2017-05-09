@@ -1,5 +1,8 @@
 {{-- /resources/views/books/new.blade.php --}}
 @extends('layouts.master')
+@push('head')
+<h2>Add New Game</h2>
+@endpush
 
 @section('title')
 New Game
@@ -15,7 +18,7 @@ New Game
 </ul>
 @endif
 
-<h1>Add a new Game</h1>
+
 
 <form method='POST' action='/games/new'>
     {{ csrf_field() }}
@@ -45,13 +48,13 @@ New Game
     <label>Genres</label>
     <ul id='genres'>
         @foreach($genresForCheckbox as $id => $name)
-        <li><input
-                type='checkbox'
-                value='{{ $id }}'
-                id='genre_{{ $id }}'
-                name='genres[]'
-                >&nbsp;
-            <label for='genre_{{ $id }}'>{{ $name }}</label></li>
+        <input
+            type='checkbox'
+            value='{{ $id }}'
+            id='genre_{{ $id }}'
+            name='genres[]'
+            >&nbsp;
+        <label for='genre_{{ $id }}'>{{ $name }}</label>
         @endforeach
     </ul>
     <br>

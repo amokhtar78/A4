@@ -7,8 +7,11 @@
         </title>
 
         <meta charset='utf-8'>
+<link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
 
-        <link href='/css/games.css' type='text/css' rel='stylesheet'>
+        <link href='/css/gamemaster.css' type='text/css' rel='stylesheet'>
 
         @stack('head')
 
@@ -18,8 +21,7 @@
             <header>
                 <img
                     src='/img/gameranker.png'
-                    alt='Game Logo'>
-                <h1>Video Game Ranker</h1>
+                    alt='Game Logo'>              
             </header>
             <nav>
                 <nav>
@@ -42,7 +44,7 @@
             <footer>
                 Amir Mokhtar &copy; {{ date('Y') }}
                 <BR>
-                <a href="https://github.com/amokhtar78/A4">GitHub Repository</a>
+                <a class="myHover" href="https://github.com/amokhtar78/A4">GitHub Repository</a>
             </footer>
 
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
