@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Game;
 use App\Developer;
 use App\Genre;
+use App\Grank;
 use Session;
 
 class GameController extends Controller {
@@ -157,6 +158,43 @@ class GameController extends Controller {
         $game->delete();
         # Finish
         Session::flash('message', $game->title . ' was deleted.');
+        return redirect('/games');
+    }
+
+    /**
+     * GET
+     * /games/review/{id}
+     * Show form to edit a game
+     */
+    public function createNewReview($id) {
+        $game = Game::find($id);
+
+        $granksForDropdown = Grank::granksForDropdown();
+
+        if (is_null($game)) {
+            Session::flash('message', 'The game you requested was not found.');
+            return redirect('/games');
+        }
+
+        return view('games.review')->with([
+                    'id' => $id,
+                    'game' => $game,
+                    'granksForDropdown' => $granksForDropdown,
+        ]);
+    }
+
+    /**
+     * POST
+     * /games/review
+     * Process form to save edits to a game
+     */
+    public function saveReviews(Request $request) {
+        $game = Game::find($request->id);
+       
+        $game->granks()->attach($request->grank_id);
+
+        Session::flash('message', 'The Game ' . $request->title . ' was reviewed.');
+
         return redirect('/games');
     }
 

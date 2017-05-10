@@ -16,13 +16,18 @@ games
     @else
     @foreach($games as $game)
 
+
     <div class='game cf'>
+        <h3>{{
+            $game->published.' '.$game->title.' by '.$game->developer->dev_name.
+                     ' of '.$game->developer->dev_country.
+                     ' - Score : '.$game->gameScore().'% '
+            }}
 
-        <h3>{{ $game->published.' '.$game->title.
-                        ' by '.$game->developer->dev_name.' of '.$game->developer->dev_country }}
-
+            <a class='gameAction' href='/games/review/{{ $game->id }}'><i class='fa fa-thumbs-up'></i></a>
             <a class='gameAction' href='/games/edit/{{ $game->id }}'><i class='fa fa-pencil'></i></a>
-            <a class='gameAction' href='/games/delete/{{ $game->id }}'><i class='fa fa-trash'></i></a></h3>
+            <a class='gameAction' href='/games/delete/{{ $game->id }}'><i class='fa fa-trash'></i></a>
+        </h3>
 
 
     </div>

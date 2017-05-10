@@ -1,4 +1,4 @@
-{{-- /resources/views/books/new.blade.php --}}
+{{-- /resources/views/games/new.blade.php --}}
 @extends('layouts.master')
 @push('head')
 <h2>Add New Game</h2>

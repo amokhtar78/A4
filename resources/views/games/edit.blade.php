@@ -1,4 +1,4 @@
-{{-- /resources/views/books/edit.blade.php --}}
+{{-- /resources/views/games/edit.blade.php --}}
 @extends('layouts.master')
 @push('head')
 <h2>Edit {{$game->title}} Game</h2>

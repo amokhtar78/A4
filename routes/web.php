@@ -18,10 +18,14 @@ Route::get('/games', 'GameController@index');
 Route::get('/games/new', 'GameController@createNewGame');
 Route::post('/games/new', 'GameController@storeNewGame');
 
-# routes to process the form to edit a new game
+# routes to process the form to edit a game
 Route::get('/games/edit/{id}', 'GameController@edit');
 Route::post('/games/edit', 'GameController@saveEdits');
 
 #routes to confirm deletion of game
 Route::get('/games/delete/{id}', 'GameController@confirmDeletion');
 Route::post('/games/delete', 'GameController@delete');
+
+# routes to process the form to review a game
+Route::get('/games/review/{id}', 'GameController@createNewReview');
+Route::post('/games/review', 'GameController@saveReviews');
