@@ -21,8 +21,7 @@ class CreateGamesTable extends Migration {
             # The rest of the fields...
             $table->string('title');
             $table->integer('published');
-           # FYI: We're skipping the 'tags' field for now; more on that later.
-        });
+            });
     }
 
     /**

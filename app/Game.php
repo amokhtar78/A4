@@ -23,10 +23,15 @@ class Game extends Model {
     }
 
     public function gameScore() {
+        
         $gameRank = $this->granks->sum('score');
-        $rankCount = 2*$this->granks->count('score');
-        $scorePct = ($gameRank / $rankCount)*100 ;
-        return round($scorePct);
+        $rankCount = 2 * $this->granks->count('score');
+        
+        # prevent divide by zero
+        if ($rankCount != 0) {
+            $scorePct = ($gameRank / $rankCount) * 100;
+            return round($scorePct);
+        } else return 0;
     }
 
 }

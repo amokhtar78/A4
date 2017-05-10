@@ -36,6 +36,7 @@ Edit {{$game->title}} Game
 
     <label for='developer_id'>* Developer:</label>
     <select id='developer_id' name='developer_id'>
+        <option value='0'>Choose</option>
         @foreach($developersForDropdown as $developer_id => $developerName)
         <option value='{{ $developer_id }}' {{ ($game->developer_id == $developer_id) ? 'SELECTED' : '' }}>
             {{$developerName}}

@@ -20,10 +20,10 @@ Review {{$game->title}} Game
 
 <form method='POST' action='/games/review'>
     {{ csrf_field() }}
-/*
+  
     <input type='hidden' name='id' value='{{ $game->id }}'>
 
-    
+
     <label for='grank_id'>* What do you think of {{$game->title}}:</label>
     <select id='grank_id' name='grank_id'>
         @foreach($granksForDropdown as $grank_id => $grankName)
@@ -33,7 +33,7 @@ Review {{$game->title}} Game
         @endforeach
     </select>
     <br><br>
-    
+
     <input type='submit' value='Save Game Changes'>
 </form>
 

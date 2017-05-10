@@ -7,31 +7,42 @@ use App\Game;
 use App\Developer;
 use App\Genre;
 use App\Grank;
+use Khill\Lavacharts\Lavacharts;
 use Session;
 
 class GameController extends Controller {
-
+    /**
+     * GET
+     * /games
+     * list all games orderd by date published
+     */
     public function index() {
         $games = Game::orderBy('published')->get();
-        return view('games.index')->with(['games' => $games]);
-    }
 
+        return view('games.index')->with([
+                    'games' => $games
+        ]);
+    }
+    /**
+     * GET
+     * /games/new
+     * Display the form to add a new game
+     */
     public function createNewGame(Request $request) {
         $developersForDropdown = Developer::developersForDropdown();
         $genresForCheckboxes = Genre::getGenresForCheckboxes();
+        
         return view('games.new')->with([
                     'developersForDropdown' => $developersForDropdown,
                     'genresForCheckbox' => $genresForCheckboxes,
         ]);
     }
-
     /**
      * POST
      * /games/new
      * Process the form for adding a new game
      */
     public function storeNewGame(Request $request) {
-
         $title = $request->input('title');
 
         $this->validate($request, [
@@ -46,10 +57,6 @@ class GameController extends Controller {
         $game->developer_id = $request->developer_id;
         $game->save();
 
-        # Now handle genres.
-        # Note how the game has to be created (save) first *before* genres can
-        # be added; this is because the genres need a game_id to associate with
-        # and we don't have a game_id until the game is created.
         $genres = ($request->genres) ? : [];
         $game->genres()->sync($genres);
         $game->save();
@@ -66,12 +73,9 @@ class GameController extends Controller {
      */
     public function edit($id = null) {
         $game = Game::with('genres')->find($id);
-
         $developersForDropdown = Developer::developersForDropdown();
-
         $genresForCheckboxes = Genre::getGenresForCheckboxes();
-        # Create a simple array of just the genre names for genres associated with this Game;
-        # will be used in the view to decide which genres should be checked off
+        
         $genresForThisGame = [];
         foreach ($game->genres as $genre) {
             $genresForThisGame[] = $genre->name;
@@ -90,7 +94,6 @@ class GameController extends Controller {
                     'genresForThisGame' => $genresForThisGame,
         ]);
     }
-
     /**
      * POST
      * /games/edit
@@ -101,6 +104,7 @@ class GameController extends Controller {
         $this->validate($request, [
             'title' => 'required|min:1',
             'published' => 'required|numeric',
+            'developer_id' => 'not_in:0',
         ]);
 
         $game = Game::find($request->id);
@@ -190,7 +194,7 @@ class GameController extends Controller {
      */
     public function saveReviews(Request $request) {
         $game = Game::find($request->id);
-       
+
         $game->granks()->attach($request->grank_id);
 
         Session::flash('message', 'The Game ' . $request->title . ' was reviewed.');
