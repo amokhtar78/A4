@@ -1,0 +1,46 @@
+{{-- /resources/views/games/show.blade.php --}}
+@extends('layouts.master')
+@push('head')
+<link href='/css/games.css' rel='stylesheet'>
+<h2>About {{$game->title}} Game</h2>
+@endpush
+
+@section('title')
+About: {{$game->title}} Game
+@endsection
+
+@section('content')
+<table>
+    <tr>
+        <th>Published Date</th>
+        <th>Name</th>
+        <th>Developer</th>
+        <th>Country</th>
+        <th>Average Score</th>   
+    </tr>
+    <tr>
+        <th>{{$game->published}}</th>
+        <th>{{$game->title}}</th>
+        <th>{{$game->developer->dev_name}}</th>
+        <th>{{$game->developer->dev_name}}</th>
+        <th>{{$game->gameScore()}}</th>  
+    </tr>
+</table>
+
+<label>Genres</label>
+    <ul id='genres'>
+        @foreach($genresForCheckbox as $id => $name)
+        <input
+            type='checkbox'
+            value='{{ $id }}'
+            name='genres[]'
+            {{ (in_array($name, $genresForThisGame)) ? 'CHECKED' : '' }}
+            >&nbsp;
+        {{ $name }}
+        @endforeach
+    </ul>
+    <br>
+
+</form>
+
+@endsection

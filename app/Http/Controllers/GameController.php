@@ -11,6 +11,7 @@ use Khill\Lavacharts\Lavacharts;
 use Session;
 
 class GameController extends Controller {
+
     /**
      * GET
      * /games
@@ -23,6 +24,32 @@ class GameController extends Controller {
                     'games' => $games
         ]);
     }
+
+    /**
+     * GET
+     * /gamess/{id}
+     */
+    public function show($id) {
+        $game = Game::find($id);
+        if (!$game) {
+            Session::flash('message', 'The game you looking for was not found.');
+            return redirect('/');
+        }
+        $genresForCheckboxes = Genre::getGenresForCheckboxes();
+
+        $genresForThisGame = [];
+        foreach ($game->genres as $genre) {
+            $genresForThisGame[] = $genre->name;
+        }
+        
+        return view('games.show')->with([
+                    'game' => $game,
+                    'genresForCheckbox' => $genresForCheckboxes,
+                    'genresForThisGame' => $genresForThisGame,
+        ]);
+        
+    }
+
     /**
      * GET
      * /games/new
@@ -31,12 +58,13 @@ class GameController extends Controller {
     public function createNewGame(Request $request) {
         $developersForDropdown = Developer::developersForDropdown();
         $genresForCheckboxes = Genre::getGenresForCheckboxes();
-        
+
         return view('games.new')->with([
                     'developersForDropdown' => $developersForDropdown,
                     'genresForCheckbox' => $genresForCheckboxes,
         ]);
     }
+
     /**
      * POST
      * /games/new
@@ -75,7 +103,7 @@ class GameController extends Controller {
         $game = Game::with('genres')->find($id);
         $developersForDropdown = Developer::developersForDropdown();
         $genresForCheckboxes = Genre::getGenresForCheckboxes();
-        
+
         $genresForThisGame = [];
         foreach ($game->genres as $genre) {
             $genresForThisGame[] = $genre->name;
@@ -94,6 +122,7 @@ class GameController extends Controller {
                     'genresForThisGame' => $genresForThisGame,
         ]);
     }
+
     /**
      * POST
      * /games/edit
@@ -113,17 +142,8 @@ class GameController extends Controller {
         $game->developer_id = $request->developer_id;
         $game->save();
 
-        # If there were genres selected...
-        if ($request->genres) {
-            $genres = $request->genres;
-        }
-        # If there were no genres selected (i.e. no genres in the request)
-        # default to an empty array of genres
-        else {
-            $genres = [];
-        }
+        $genres = ($request->genres) ? : [];
 
-        # Above if/else could be condensed down to this: $genres = ($request->genres) ?: [];
         # Sync genres
         $game->genres()->sync($genres);
         $game->save();
@@ -138,7 +158,7 @@ class GameController extends Controller {
      * Page to confirm deletion
      */
     public function confirmDeletion($id) {
-        # Get the game they're attempting to delete
+
         $game = Game::find($id);
         if (!$game) {
             Session::flash('message', 'Game not found.');
@@ -152,7 +172,7 @@ class GameController extends Controller {
      * Actually delete the game
      */
     public function delete(Request $request) {
-        # Get the game to be deleted
+
         $game = Game::find($request->id);
         if (!$game) {
             Session::flash('message', 'Deletion failed; game not found.');
@@ -160,7 +180,7 @@ class GameController extends Controller {
         }
         $game->genres()->detach();
         $game->delete();
-        # Finish
+
         Session::flash('message', $game->title . ' was deleted.');
         return redirect('/games');
     }
@@ -168,7 +188,7 @@ class GameController extends Controller {
     /**
      * GET
      * /games/review/{id}
-     * Show form to edit a game
+     * Show form to review a game
      */
     public function createNewReview($id) {
         $game = Game::find($id);
@@ -190,7 +210,7 @@ class GameController extends Controller {
     /**
      * POST
      * /games/review
-     * Process form to save edits to a game
+     * Process form to save review to a game
      */
     public function saveReviews(Request $request) {
         $game = Game::find($request->id);

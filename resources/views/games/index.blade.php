@@ -1,3 +1,4 @@
+{{-- /resources/views/games/index.blade.php --}}
 @extends('layouts.master')
 
 @push('head')
@@ -22,9 +23,10 @@ games
             $game->published.' '.$game->title.
                      ' - Score : '.$game->gameScore().'% '
             }}
-
+            
+            <a class='gameAction' href='/games/{{ $game->id }}'><i class='fa fa-eye'></i></a>
             <a class='gameAction' href='/games/review/{{ $game->id }}'><i class='fa fa-thumbs-up'></i></a>
-            <a class='gameAction' href='/games/edit/{{ $game->id }}'><i class='fa fa-pencil'></i></a>
+            <a class='gameAction' href='/games/edit/{{ $game->id }}'><i class='fa fa-edit'></i></a>
             <a class='gameAction' href='/games/delete/{{ $game->id }}'><i class='fa fa-trash'></i></a>
         </h3>
     </div>

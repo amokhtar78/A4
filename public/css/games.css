@@ -75,3 +75,12 @@ a.gameAction:hover {
     padding:2em
     color:red; /* flatly teel */
 }
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    height: 50px;
+}

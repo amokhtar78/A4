@@ -29,3 +29,6 @@ Route::post('/games/delete', 'GameController@delete');
 # routes to process the form to review a game
 Route::get('/games/review/{id}', 'GameController@createNewReview');
 Route::post('/games/review', 'GameController@saveReviews');
+
+# Get route to see a single game
+Route::get('/games/{id?}', 'GameController@show');
