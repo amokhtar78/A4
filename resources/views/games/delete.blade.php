@@ -2,14 +2,12 @@
 @extends('layouts.master')
 @push('head')
 <link href='/css/games.css' rel='stylesheet'>
-<h2>Delete {{$game->title}} Game</h2>
 @endpush
 @section('title')
 {{ $game->title }}
 @endsection
 
 @section('content')
-
 <h1>Confirm deletion</h1>
 <form method='POST' action='/games/delete'>
 

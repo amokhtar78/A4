@@ -2,7 +2,6 @@
 @extends('layouts.master')
 @push('head')
 <link href='/css/games.css' rel='stylesheet'>
-<h2>Add New Game</h2>
 @endpush
 
 @section('title')
@@ -10,6 +9,7 @@ New Game
 @endsection
 
 @section('content')
+<h2>Add New Game</h2>
 
 @if(count($errors) > 0)
 <ul>

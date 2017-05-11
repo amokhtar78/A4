@@ -2,7 +2,6 @@
 @extends('layouts.master')
 @push('head')
 <link href='/css/games.css' rel='stylesheet'>
-<h2>About {{$game->title}} Game</h2>
 @endpush
 
 @section('title')
@@ -10,6 +9,7 @@
 @endsection
 
 @section('content')
+<h2>About {{$game->title}} Game</h2>
 <table>
     <tr>
         <th>Published Date</th>

@@ -2,7 +2,6 @@
 @extends('layouts.master')
 @push('head')
 <link href='/css/games.css' rel='stylesheet'>
-<h2>Review {{$game->title}} Game</h2>
 @endpush
 
 @section('title')
@@ -10,7 +9,7 @@
 @endsection
 
 @section('content')
-
+<h2>Review {{$game->title}} Game</h2>
 @if(count($errors) > 0)
 <ul>
     @foreach ($errors->all() as $error)

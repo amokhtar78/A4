@@ -20,7 +20,7 @@ class GameController extends Controller {
         $games = Game::orderBy('published')->get();
 
         return view('games.index')->with([
-                    'games' => $games
+                    'games' => $games,
         ]);
     }
 

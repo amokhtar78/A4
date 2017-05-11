@@ -3,7 +3,6 @@
 
 @push('head')
 <link href='/css/games.css' rel='stylesheet'>
-<h2>The application to rank your favorite games !!</h2>
 @endpush
 
 @section('title')
@@ -11,6 +10,7 @@ games
 @endsection
 
 @section('content')
+<h2>The application to rank your favorite games !!</h2>
 <section id='games' class='cf'>
 
     @if(count($games) == 0)
