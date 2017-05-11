@@ -6,6 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 
 class ConnectDevelopersAndGames extends Migration {
 
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up() {
         Schema::table('games', function (Blueprint $table) {
 
@@ -14,6 +19,11 @@ class ConnectDevelopersAndGames extends Migration {
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down() {
         Schema::table('games', function (Blueprint $table) {
 
@@ -23,4 +33,3 @@ class ConnectDevelopersAndGames extends Migration {
     }
 
 }
-

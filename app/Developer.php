@@ -23,4 +23,5 @@ class Developer extends Model {
         }
         return $developersForDropdown;
     }
+
 }

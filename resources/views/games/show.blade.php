@@ -6,7 +6,7 @@
 @endpush
 
 @section('title')
-About: {{$game->title}} Game
+{{$game->title}}
 @endsection
 
 @section('content')
@@ -22,25 +22,29 @@ About: {{$game->title}} Game
         <th>{{$game->published}}</th>
         <th>{{$game->title}}</th>
         <th>{{$game->developer->dev_name}}</th>
-        <th>{{$game->developer->dev_name}}</th>
+        <th>{{$game->developer->dev_country}}</th>
         <th>{{$game->gameScore()}}</th>  
     </tr>
+    <table>
+        <tr>
+            <th>
+                <label>Genres</label>
+                <ul id='genres'>
+                    @foreach($genresForCheckbox as $id => $name)
+                    <input
+                        type='checkbox'
+                        value='{{ $id }}'
+                        name='genres[]'
+                        {{ (in_array($name, $genresForThisGame)) ? 'CHECKED' : '' }}
+                        >&nbsp;
+                    {{ $name }}
+                    @endforeach
+                </ul>
+            </th>
+        </tr>
+    </table>
 </table>
 
-<label>Genres</label>
-    <ul id='genres'>
-        @foreach($genresForCheckbox as $id => $name)
-        <input
-            type='checkbox'
-            value='{{ $id }}'
-            name='genres[]'
-            {{ (in_array($name, $genresForThisGame)) ? 'CHECKED' : '' }}
-            >&nbsp;
-        {{ $name }}
-        @endforeach
-    </ul>
-    <br>
 
-</form>
-
+<br>
 @endsection

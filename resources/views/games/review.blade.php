@@ -1,11 +1,12 @@
 {{-- /resources/views/games/review.blade.php --}}
 @extends('layouts.master')
 @push('head')
+<link href='/css/games.css' rel='stylesheet'>
 <h2>Review {{$game->title}} Game</h2>
 @endpush
 
 @section('title')
-Review {{$game->title}} Game
+{{$game->title}}
 @endsection
 
 @section('content')
@@ -20,7 +21,7 @@ Review {{$game->title}} Game
 
 <form method='POST' action='/games/review'>
     {{ csrf_field() }}
-  
+
     <input type='hidden' name='id' value='{{ $game->id }}'>
 
 

@@ -13,17 +13,19 @@ class Game extends Model {
     }
 
     public function genres() {
+        # function make the realtion between Game Genres and Games (many to many)
         # With timetsamps() will ensure the pivot table has its created_at/updated_at fields automatically maintained
         return $this->belongsToMany('App\Genre')->withTimestamps();
     }
 
     public function granks() {
+        # function make the realtion between Game Ranks and Games (many to many)
         # With timetsamps() will ensure the pivot table has its created_at/updated_at fields automatically maintained
         return $this->belongsToMany('App\Grank')->withTimestamps();
     }
 
     public function gameScore() {
-        
+     # function converts the review of the game to a precent score 
         $gameRank = $this->granks->sum('score');
         $rankCount = 2 * $this->granks->count('score');
         

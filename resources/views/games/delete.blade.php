@@ -1,22 +1,26 @@
+{{-- /resources/views/games/delete.blade.php --}}
 @extends('layouts.master')
-
+@push('head')
+<link href='/css/games.css' rel='stylesheet'>
+<h2>Delete {{$game->title}} Game</h2>
+@endpush
 @section('title')
-    Confirm deletion: {{ $game->title }}
+{{ $game->title }}
 @endsection
 
 @section('content')
 
-    <h1>Confirm deletion</h1>
-    <form method='POST' action='/games/delete'>
+<h1>Confirm deletion</h1>
+<form method='POST' action='/games/delete'>
 
-        {{ csrf_field() }}
+    {{ csrf_field() }}
 
-        <input type='hidden' name='id' value='{{ $game->id }}'?>
+    <input type='hidden' name='id' value='{{ $game->id }}'?>
 
-        <h2>Are you sure you want to delete <em>{{ $game->title }}</em>?</h2>
+    <h2>Are you sure you want to delete <em>{{ $game->title }}</em>?</h2>
 
-        <input type='submit' value='Confirm deletion of game.' class='btn btn-danger'>
+    <input type='submit' value='Confirm deletion of game.' class='btn btn-danger'>
 
-    </form>
+</form>
 
 @endsection

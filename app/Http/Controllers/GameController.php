@@ -7,7 +7,6 @@ use App\Game;
 use App\Developer;
 use App\Genre;
 use App\Grank;
-use Khill\Lavacharts\Lavacharts;
 use Session;
 
 class GameController extends Controller {
@@ -27,7 +26,8 @@ class GameController extends Controller {
 
     /**
      * GET
-     * /gamess/{id}
+     * /gamess/{id} 
+     * Show game info
      */
     public function show($id) {
         $game = Game::find($id);
@@ -41,13 +41,12 @@ class GameController extends Controller {
         foreach ($game->genres as $genre) {
             $genresForThisGame[] = $genre->name;
         }
-        
+
         return view('games.show')->with([
                     'game' => $game,
                     'genresForCheckbox' => $genresForCheckboxes,
                     'genresForThisGame' => $genresForThisGame,
         ]);
-        
     }
 
     /**
@@ -158,7 +157,7 @@ class GameController extends Controller {
      * Page to confirm deletion
      */
     public function confirmDeletion($id) {
-
+        # Get the game they're attempting to delete
         $game = Game::find($id);
         if (!$game) {
             Session::flash('message', 'Game not found.');
@@ -172,15 +171,16 @@ class GameController extends Controller {
      * Actually delete the game
      */
     public function delete(Request $request) {
-
+        # Get the game to be deleted
         $game = Game::find($request->id);
         if (!$game) {
             Session::flash('message', 'Deletion failed; game not found.');
             return redirect('/games');
         }
         $game->genres()->detach();
+        $game->granks()->detach();
         $game->delete();
-
+        # Finish
         Session::flash('message', $game->title . ' was deleted.');
         return redirect('/games');
     }

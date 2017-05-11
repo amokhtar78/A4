@@ -16,21 +16,24 @@ games
     @if(count($games) == 0)
     You don't have any games yet; would you like to <a href='/games/new'>add one</a>?
     @else
-    @foreach($games as $game)
-
     <div class='game cf'>
-        <h3>{{
-            $game->published.' '.$game->title.
-                     ' - Score : '.$game->gameScore().'% '
-            }}
-            
-            <a class='gameAction' href='/games/{{ $game->id }}'><i class='fa fa-eye'></i></a>
-            <a class='gameAction' href='/games/review/{{ $game->id }}'><i class='fa fa-thumbs-up'></i></a>
-            <a class='gameAction' href='/games/edit/{{ $game->id }}'><i class='fa fa-edit'></i></a>
-            <a class='gameAction' href='/games/delete/{{ $game->id }}'><i class='fa fa-trash'></i></a>
-        </h3>
+        <table>
+            @foreach($games as $game)
+            <tr>
+                <th>{{$game->published}}</th>
+                <th>{{$game->title}}</th>
+                <th>{{'Score : '.$game->gameScore().'%'}}</th>
+                <th>
+                    <a class='gameAction' href='/games/{{ $game->id }}'><i class='fa fa-eye'></i></a>
+                    <a class='gameAction' href='/games/review/{{ $game->id }}'><i class='fa fa-thumbs-up'></i></a>
+                    <a class='gameAction' href='/games/edit/{{ $game->id }}'><i class='fa fa-edit'></i></a>
+                    <a class='gameAction' href='/games/delete/{{ $game->id }}'><i class='fa fa-trash'></i></a>
+                </th>
+
+            </tr>
+            @endforeach
+        </table>
     </div>
-    @endforeach
     @endif
 </section>
 @endsection

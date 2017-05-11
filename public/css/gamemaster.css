@@ -11,10 +11,10 @@ body {
 
 footer {
     color: white;
-    position: absolute;
+    position: fixed;
     left:0;
     bottom:0;
-    height:60px;
+    height:30px;
     width:100%;
     background-color:black;
     text-align:center;
@@ -63,7 +63,7 @@ a:link, a:visited, a:active, a:hover {
 }
 
 html {
-    font-size:62.5%; /* base 10 */
+
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -190,7 +190,7 @@ nav ul li a:link {
 
 nav ul li a:hover {
     color: red;
-    }
+}
 
 a.active:link, a.active:visited, a.active:active, a.active:hover {
     color:yellow;
@@ -201,6 +201,8 @@ a.active:link, a.active:visited, a.active:active, a.active:hover {
 Forms
 -----------------------------------------------------*/
 label, legend {
+    text-decoration: underline;
+    font-weight: bold;
     display:block;
     margin-top:5px;
     margin-bottom:0;

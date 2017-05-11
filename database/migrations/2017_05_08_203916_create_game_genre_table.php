@@ -29,6 +29,11 @@ class CreateGameGenreTable extends Migration {
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down() {
         Schema::drop('game_genre');
     }

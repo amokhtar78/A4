@@ -1,11 +1,12 @@
 {{-- /resources/views/games/edit.blade.php --}}
 @extends('layouts.master')
 @push('head')
+<link href='/css/games.css' rel='stylesheet'>
 <h2>Edit {{$game->title}} Game</h2>
 @endpush
 
 @section('title')
-Edit {{$game->title}} Game
+{{$game->title}}
 @endsection
 
 @section('content')

@@ -1,6 +1,7 @@
 {{-- /resources/views/games/new.blade.php --}}
 @extends('layouts.master')
 @push('head')
+<link href='/css/games.css' rel='stylesheet'>
 <h2>Add New Game</h2>
 @endpush
 

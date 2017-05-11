@@ -5,12 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Grank extends Model {
-    # With timetsamps() will ensure the pivot table has its created_at/updated_at fields automatically maintained
 
     public function games() {
+        # function make the realtion between Game Ranks and Games (many to many)
+        # With timetsamps() will ensure the pivot table has its created_at/updated_at fields automatically maintained
         return $this->belongsToMany('App\Game')->withTimestamps();
     }
-    
+
     public static function granksForDropdown() {
         # Get all the granks
         $granks = Grank::orderBy('name', 'ASC')->get();

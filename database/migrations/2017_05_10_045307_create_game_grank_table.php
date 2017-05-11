@@ -6,6 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateGameGrankTable extends Migration {
 
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up() {
         Schema::create('game_grank', function (Blueprint $table) {
 
@@ -21,8 +26,13 @@ class CreateGameGrankTable extends Migration {
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down() {
-       Schema::drop('game_grank');
+        Schema::drop('game_grank');
     }
 
 }
